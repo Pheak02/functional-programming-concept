@@ -1,6 +1,7 @@
 package main.java.imperative;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class Main {
     public static void main(String[] args) {
@@ -11,7 +12,7 @@ public class Main {
                 new Person("Borey", Gender.MALE),
                 new Person("Bopha", Gender.MALE)
         );
-
+        System.out.println("Imperative Approach");
         //======IMPERATIVE APPROACHES===========
         List<Person> female = new ArrayList<>();
         for (Person person: people) {
@@ -22,7 +23,11 @@ public class Main {
         for (Person person: female) {
             System.out.println(person);
         }
-
+        System.out.println("Declarative Approach");
+        people.stream()
+                .filter(person -> Gender.FEMALE.equals(person.gender))
+                .collect(Collectors.toList())
+                .forEach(System.out::println);
     }
 
     static class Person {
